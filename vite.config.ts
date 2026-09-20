@@ -13,7 +13,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["icon.svg"],
+      includeAssets: ["icon.svg", "apple-touch-icon-180x180.png", "favicon.ico"],
       manifest: {
         name: "Stuff Finder",
         short_name: "Stuff",

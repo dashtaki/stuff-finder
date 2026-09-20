@@ -1,3 +1,13 @@
+import { createBrowserRouter, RouterProvider } from "react-router";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import { routes } from "./routes";
+
+const router = createBrowserRouter(routes);
+
 export function App() {
-  return <main className="p-4 text-lg">Stuff Finder</main>;
+  return (
+    <ErrorBoundary>
+      <RouterProvider router={router} />
+    </ErrorBoundary>
+  );
 }
