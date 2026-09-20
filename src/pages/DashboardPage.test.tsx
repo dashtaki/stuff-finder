@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterEach, describe, expect, it } from "vitest";
@@ -13,10 +13,7 @@ function renderAt(path: string) {
 }
 
 describe("DashboardPage", () => {
-  afterEach(() => {
-    cleanup();
-    return db.items.clear();
-  });
+  afterEach(() => db.items.clear());
 
   it("shows the empty state with an add link when there are no items", async () => {
     renderAt("/");

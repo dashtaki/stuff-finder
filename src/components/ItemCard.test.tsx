@@ -1,6 +1,6 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import { afterEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import type { Item } from "../db/db";
 import { ItemCard } from "./ItemCard";
 
@@ -14,8 +14,6 @@ const item: Item = {
 };
 
 describe("ItemCard", () => {
-  afterEach(cleanup);
-
   it("shows name, location, relative time, and links to detail", () => {
     render(
       <MemoryRouter>
