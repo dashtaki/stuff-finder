@@ -8,6 +8,9 @@ if (!root) {
   throw new Error("Missing #root element");
 }
 
+// Best effort: ask the browser not to evict our IndexedDB data.
+void navigator.storage?.persist?.();
+
 createRoot(root).render(
   <StrictMode>
     <App />
