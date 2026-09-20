@@ -23,7 +23,7 @@ describe("AddItemPage", () => {
   });
 
   it("cancel goes back to the dashboard without saving", async () => {
-    const router = createMemoryRouter(routes, { initialEntries: ["/", "/new"], initialIndex: 1 });
+    const router = createMemoryRouter(routes, { initialEntries: ["/new"] });
     render(<RouterProvider router={router} />);
     await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
     await waitFor(() => expect(router.state.location.pathname).toBe("/"));

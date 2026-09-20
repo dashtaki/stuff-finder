@@ -18,7 +18,7 @@ export function AddItemPage() {
   return (
     <main className="mx-auto flex min-h-screen max-w-lg flex-col gap-4 p-4">
       <h1 className="text-2xl font-bold">Add item</h1>
-      <ItemForm submitLabel="Save" onSubmit={handleSubmit} onCancel={() => navigate(-1)} />
+      <ItemForm submitLabel="Save" onSubmit={handleSubmit} onCancel={() => navigate("/")} />
     </main>
   );
 }
