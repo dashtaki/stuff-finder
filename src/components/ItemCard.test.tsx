@@ -32,6 +32,7 @@ describe("ItemCard", () => {
         <ItemCard item={item} />
       </MemoryRouter>,
     );
-    expect(screen.getByLabelText("No photo")).toBeInTheDocument();
+    expect(screen.getByTestId("no-photo")).toBeInTheDocument();
+    expect(screen.getByRole("link")).toHaveAccessibleName("Car keys Kitchen drawer 2 minutes ago");
   });
 });

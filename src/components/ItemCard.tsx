@@ -19,8 +19,8 @@ export function ItemCard({ item }: ItemCardProps) {
         <img src={photoUrl} alt="" className="h-14 w-14 shrink-0 rounded-lg object-cover" />
       ) : (
         <div
-          role="img"
-          aria-label="No photo"
+          aria-hidden="true"
+          data-testid="no-photo"
           className="h-14 w-14 shrink-0 rounded-lg bg-slate-100"
         />
       )}
