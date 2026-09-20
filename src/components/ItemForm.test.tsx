@@ -48,7 +48,11 @@ describe("ItemForm", () => {
   });
 
   it("shows the error message when onSubmit throws", async () => {
-    const onSubmit = vi.fn().mockRejectedValue(new StorageError(new Error("quota")));
+    const onSubmit = vi
+      .fn()
+      .mockRejectedValue(
+        new StorageError("Could not save. Your device may be out of storage.", new Error("quota")),
+      );
     render(<ItemForm submitLabel="Save" onSubmit={onSubmit} onCancel={vi.fn()} />);
     await userEvent.type(screen.getByLabelText("Name"), "Keys");
     await userEvent.type(screen.getByLabelText("Location"), "Hook");

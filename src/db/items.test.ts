@@ -29,6 +29,9 @@ describe("addItem", () => {
   it("wraps storage failures in StorageError", async () => {
     vi.spyOn(db.items, "add").mockRejectedValue(new Error("QuotaExceededError"));
     await expect(addItem({ name: "A", location: "B" })).rejects.toBeInstanceOf(StorageError);
+    await expect(addItem({ name: "A", location: "B" })).rejects.toThrow(
+      "Could not save. Your device may be out of storage.",
+    );
   });
 });
 
@@ -57,6 +60,13 @@ describe("removeItem", () => {
     const id = await addItem({ name: "Keys", location: "Drawer" });
     await removeItem(id);
     expect(await getItem(id)).toBeUndefined();
+  });
+
+  it("wraps delete failures in StorageError with a delete message", async () => {
+    vi.spyOn(db.items, "delete").mockRejectedValue(new Error("boom"));
+    const failing = removeItem(1);
+    await expect(failing).rejects.toBeInstanceOf(StorageError);
+    await expect(failing).rejects.toThrow("Could not delete this item.");
   });
 });
 
