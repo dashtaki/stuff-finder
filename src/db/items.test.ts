@@ -1,13 +1,9 @@
-import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { useNodeBlob } from "../test/nodeBlob";
 import { db } from "./db";
 import { addItem, getItem, listItems, removeItem, StorageError, updateItem } from "./items";
 
-// fake-indexeddb clones with Node's structuredClone, which turns jsdom's Blob into {}.
-beforeAll(async () => {
-  const { Blob: NodeBlob } = await vi.importActual<{ Blob: typeof Blob }>("node:buffer");
-  vi.stubGlobal("Blob", NodeBlob);
-});
-afterAll(() => vi.unstubAllGlobals());
+useNodeBlob();
 
 afterEach(async () => {
   await db.items.clear();
