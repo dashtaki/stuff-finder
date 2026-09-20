@@ -15,8 +15,9 @@ interface Loaded {
 const LOADING = { loaded: false } as const;
 
 export function useItem(id: number): ItemState {
+  const isValidId = Number.isInteger(id);
   const result = useLiveQuery<Loaded, typeof LOADING>(
-    async () => ({ loaded: true, item: await getItem(id) }),
+    async () => ({ loaded: true, item: isValidId ? await getItem(id) : undefined }),
     [id],
     LOADING,
   );

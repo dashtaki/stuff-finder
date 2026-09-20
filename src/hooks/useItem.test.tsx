@@ -24,4 +24,9 @@ describe("useItem", () => {
     const { result } = renderHook(() => useItem(9999));
     await waitFor(() => expect(result.current.status).toBe("missing"));
   });
+
+  it("returns missing for a non-integer id", async () => {
+    const { result } = renderHook(() => useItem(Number.NaN));
+    await waitFor(() => expect(result.current.status).toBe("missing"));
+  });
 });
