@@ -5,10 +5,11 @@ import { afterEach, describe, expect, it } from "vitest";
 import { db } from "../db/db";
 import { addItem, getItem } from "../db/items";
 import { routes } from "../routes";
-import { useNodeBlob } from "../test/nodeBlob";
+import { stubNodeBlob } from "../test/nodeBlob";
+
+stubNodeBlob();
 
 describe("EditItemPage", () => {
-  useNodeBlob();
   afterEach(() => db.items.clear());
 
   it("prefills, saves changes, and returns to the detail page", async () => {
